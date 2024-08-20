@@ -7,9 +7,9 @@ const configJWT = require('../../middleware/configJWT');
 router.post('/sign-in', async (req, res) => {
   let user;
   try {
-    const { name, password } = req.body;
+    const { email, password } = req.body;
 
-    user = await User.findOne({ where: { name } });
+    user = await User.findOne({ where: { email } });
     if (!user) {
       res.json({ message: 'Такого пользователя нет или пароль неверный' });
       return;
