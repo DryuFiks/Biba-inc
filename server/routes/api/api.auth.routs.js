@@ -20,7 +20,7 @@ router.post('/sign-in', async (req, res) => {
       return;
     }
     const { accessToken, refreshToken } = generateTokens({
-      user: { id: user.id, name: user.name, img: user.img },
+      user: { id: user.id, name: user.name, email: user.email },
     });
 
     // устанавливаем куки
@@ -41,7 +41,7 @@ router.post('/sign-in', async (req, res) => {
 router.post('/sign-up', async (req, res) => {
   let user;
   try {
-    const { name, img, password, rpassword } = req.body;
+    const { name, email, password, rpassword } = req.body;
 
     if (password !== rpassword) {
       res.status(400).json({ message: 'Пароли не совпадают!' });
@@ -53,10 +53,10 @@ router.post('/sign-up', async (req, res) => {
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    user = await User.create({ name, password: hash, img });
+    user = await User.create({ name, password: hash, email });
 
     const { accessToken, refreshToken } = generateTokens({
-      user: { id: user.id, name: user.name, img: user.img },
+      user: { id: user.id, name: user.name, email: user.email },
     });
 
     // устанавливаем куки

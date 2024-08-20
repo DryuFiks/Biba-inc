@@ -23,15 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         allowNull: false,
-        unique: true,
         type: DataTypes.STRING,
       },
       password: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      img: {
+      email: {
         allowNull: false,
+        unique: true,
         type: DataTypes.STRING,
       },
       isSaller: {

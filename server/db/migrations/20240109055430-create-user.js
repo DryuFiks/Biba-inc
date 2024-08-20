@@ -11,15 +11,15 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING,
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      img: {
+      email: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING,
       },
       isSaller: {

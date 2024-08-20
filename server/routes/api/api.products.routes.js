@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/img');
+    cb(null, 'public/email');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -25,14 +25,14 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { name, description, price, count, img } = req.body;
-    // const newFileUrl = `/img/${req.file.originalname}`;
+    const { name, description, price, count, email } = req.body;
+    // const newFileUrl = `/email/${req.file.originalname}`;
     const product = await Product.create({
       name,
       description,
       price,
       count,
-      img,
+      email,
       user_id: res.locals.user.id,
     });
     // const currentproduct = await product.findOne({ where: { id: product.id }, include: Like });
@@ -61,9 +61,9 @@ router.delete('/:productId', async (req, res) => {
 router.put('/:productId', async (req, res) => {
   try {
     const { productId } = req.params;
-    const { name, description, price, count, img } = req.body;
+    const { name, description, price, count, email } = req.body;
     const [result] = await Product.update(
-      { name, description, price, count, img },
+      { name, description, price, count, email },
       { where: { id: productId, user_id: res.locals.user.id } }
     );
     if (result > 0) {

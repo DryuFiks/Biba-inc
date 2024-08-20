@@ -8,7 +8,7 @@ module.exports = {
         {
           name: 'Peter Qazaq',
           password: await bcrypt.hash('password123', 5),
-          img: 12345,
+          email: '123@sal.ru',
           isSaller: true,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -16,7 +16,7 @@ module.exports = {
         {
           name: 'Nicolas Siberian',
           password: await bcrypt.hash('password123', 5),
-          img: 67890,
+          email: '123@sall.ru',
           isSaller: true,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -24,7 +24,7 @@ module.exports = {
         {
           name: 'Pasha',
           password: await bcrypt.hash('123', 5),
-          img: 67123,
+          email: '123@salll.ru',
           isSaller: false,
           createdAt: new Date(),
           updatedAt: new Date(),

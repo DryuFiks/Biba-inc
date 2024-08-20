@@ -7,7 +7,7 @@ const UserItem = ({ user }: { user: User }): JSX.Element => {
     <div className="user-page__item">
       <h2 className="user-page__item--name">{user.name}</h2>
       <h3 className="user-page__item--description">{user.password}</h3>
-      <img className="user-page__item--img" src={user.img} alt="hero" />
+      <img className="user-page__item--img" src={user.email} alt="hero" />
     </div>
   );
 };

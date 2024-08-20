@@ -2,12 +2,12 @@
 export type User = {
     id: number;
     name: string;
-    img: string;
+    email: string;
     password: string;
     isSaller: boolean;
 };  
 
-export type UserSignIn = Omit<User, 'id' |'img' | 'isSaller'>;
+export type UserSignIn = Omit<User, 'id' |'name' | 'isSaller'>;
 export type UserSignUp = Omit<User, 'id' | 'isSaller'> & { rpassword: string };
 
 

@@ -22,6 +22,6 @@ const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(
-    `Я мы ебашу на ${PORT} порту. Режим: ${process.env.NODE_ENV}`
+    `Я ебашу на ${PORT} порту. Режим: ${process.env.NODE_ENV}`
   );
 });
