@@ -2,11 +2,15 @@
 import React from 'react';
 import type { Product } from './types';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch } from '../../redux/store';
 import { removeProduct } from './productsSlice';
+import { Button } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const ProductItem = ({ product }: { product: Product }): JSX.Element => {
 const dispatch = useAppDispatch();
+const user = useSelector((store: RootState) => store.auth.auth);
+
   
   return (
     <div className="hero-page__item">
@@ -16,13 +20,12 @@ const dispatch = useAppDispatch();
       <h3 className="hero-page__item--description">{product.price}</h3>
       <h3 className="hero-page__item--description">{product.count}</h3>
       <Link to={`/products/${product.id}`}>More information</Link>
-      <button
-        className="hero-page__btn--remove"
-        onClick={() => dispatch(removeProduct(product.id))}
-        type="button"
-      >
-        Remove
-      </button>
+      {user?.isSaller && 
+        <Button
+          variant="contained"
+          onClick={() => dispatch(removeProduct(product.id))}>
+          Remove
+        </Button>}
     </div>
   );
 };

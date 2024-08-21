@@ -27,7 +27,7 @@ function App(): JSX.Element {
     <div className="App">
       <Routes>
         <Route path="/" element={<NavBar />}>
-          <Route index element={<MainPage />} />
+          <Route index element={<ProductsListPage />} />
           <Route path="/products" element={<ProductsListPage />} />
           <Route path="/users" element={<UsersListPage />} />
           <Route path="/sign-up" element={<RegistrationPage />} />

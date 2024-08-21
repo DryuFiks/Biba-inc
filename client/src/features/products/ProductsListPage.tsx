@@ -7,28 +7,31 @@ import ProductItem from './ProductItem';
 import FormAddProduct from './FormAddProduct';
 import {type RootState } from '../../redux/store';
 import './styles/heroes.scss';
+import { Box, Button, CircularProgress, Container, Grid } from '@mui/material';
 
 const ProductsListPage = (): JSX.Element => {
+  const user = useSelector((store: RootState) => store.auth.auth);
   const products = useSelector((store: RootState) => store.products.products);
   const loading = useSelector((store: RootState) => store.products.loading);
   const navigate = useNavigate();
 
   const content =(<>
-  <FormAddProduct />
-      <h1 className="hero-page__title">ProductsListPage</h1>
-      <div className="hero-page__container">
+  {user?.isSaller && <FormAddProduct />}
+      <Grid container spacing={2}>
         {products.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
-      </div>
-      <button onClick={() => navigate('/')} type="button">
+      </Grid>
+      <Button variant="contained" onClick={() => navigate('/')} type="button">
         стоша говна зад
-      </button>
+      </Button>
   </>)
 
   return (
     <>
-      {loading ? <img src={load} alt="loading" /> : content}
+      {loading ? <Box sx={{ display: 'flex' }}>
+      <CircularProgress color="secondary" />
+    </Box> : content}
     </>
   );
 };
