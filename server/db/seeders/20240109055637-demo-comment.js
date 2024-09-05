@@ -19,7 +19,6 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // добавьте больше комментариев по необходимости
       ],
       {}
     );

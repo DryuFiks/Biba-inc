@@ -22,7 +22,12 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING,
       },
-      isSaller: {
+      roll: {
+        allowNull: false,
+        defaultValue: "USER",
+        type: Sequelize.STRING,
+      },
+      banned: {
         allowNull: false,
         defaultValue: false,
         type: Sequelize.BOOLEAN,

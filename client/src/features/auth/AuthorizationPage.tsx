@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppDispatch } from '../../redux/store';
 import { signIn } from './authSlice';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +8,6 @@ import { UserSignIn } from './types';
 
 
 const AuthorizationPage = (): JSX.Element => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPasssword] = useState('');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -22,7 +20,7 @@ const AuthorizationPage = (): JSX.Element => {
   const onSubmit: SubmitHandler<UserSignIn> = (data) => {
     dispatch(signIn(data))
     .catch(console.log);
-    navigate('/');
+    navigate('/products');
   };
   return (
     <div>
@@ -30,8 +28,6 @@ const AuthorizationPage = (): JSX.Element => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input 
         placeholder='email'
-        // value={email} 
-        // onChange={(e) => setEmail(e.target.value)}
         {...register
         ('email', {
           required: 'This field is required',
@@ -43,24 +39,7 @@ const AuthorizationPage = (): JSX.Element => {
         type="email" />
         <input 
         placeholder='Password'
-        // value={password} 
-        // onChange={(e) => setPasssword(e.target.value)} 
-        {...register
-        ('password', {
-          required: 'This field is required',
-          minLength: {
-            value: 6,
-            message: 'min length is 6',
-          },
-          maxLength: {
-            value: 20,
-            message: 'max length is 20',
-          },
-          pattern: {
-            value: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/i,
-            message: 'password must contain numbers and letters',
-          },
-        })}
+        {...register}
         type="password" />
         <button type="submit">Войти</button>
         {emailError &&  <p style={{ color: 'tomato', textTransform: 'uppercase' }}>{emailError}</p>}   

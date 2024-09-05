@@ -15,8 +15,26 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/', async (req, res) => {
+  const filters = req.query;
   try {
-    const products = await Product.findAll();
+    const products = await Product.findAll().then((products) => {
+      if (filters.name.length) {
+        return products.filter((product) => product.name.includes(filters.name));
+      }
+      if (filters.price > 0) {
+        return products.filter((product) => product.price === filters.price);
+      }
+      if (filters.sortBy === 'name') {
+        return products.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (filters.sortBy === 'price') {
+        return products.sort((a, b) => a.price - b.price);
+      }
+      if(filters.sortOrder === SORT_ORDER.ASC) {
+        return products;
+      }else if(filters.sortOrder === SORT_ORDER.DESC) {
+        return products.reverse();
+      }
+    })
     res.json({ products });
   } catch ({ message }) {
     res.json({ type: 'products router', message });

@@ -6,7 +6,7 @@ module.exports = {
       'Products',
       [
         {
-          user_id: 1,
+          user_id: 3,
           name: 'Iphone 13',
           description: 'The most expensive phone',
           count: 1 ,
@@ -16,7 +16,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          user_id: 2,
+          user_id: 4,
           name: 'Sumsung S22',
           description: 'The most expensive phone in the world',
           count: 1 ,
@@ -26,7 +26,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          user_id: 1,
+          user_id: 3,
           name: 'SVO phone',
           description: 'The most expensive phone in the Russia',
           count: 1 ,
@@ -36,7 +36,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          user_id: 2,
+          user_id: 4,
           name: 'Taburetka',
           description: 'Mozhno sidet na taburetke',
           count: 1 ,
@@ -46,7 +46,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          user_id: 1,
+          user_id: 3,
           name: 'Truhani',
           description: 'b/u',
           count: 1 ,
@@ -56,7 +56,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          user_id: 2,
+          user_id: 4,
           name: 'Tapochki',
           description: 'Mozhno zapisat v Tapochki tvoyu mat',
           count: 1 ,

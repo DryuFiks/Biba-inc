@@ -34,7 +34,12 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         type: DataTypes.STRING,
       },
-      isSaller: {
+      roll: {
+        allowNull: false,
+        defaultValue: "USER",
+        type: DataTypes.STRING,
+      },
+      banned: {
         allowNull: false,
         defaultValue: false,
         type: DataTypes.BOOLEAN,

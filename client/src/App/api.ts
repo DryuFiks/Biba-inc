@@ -1,9 +1,15 @@
-import type { Product, ProductId, ProductWithOutId } from "../features/products/types";
+import type { Product, ProductFilters, ProductId, ProductWithOutId } from "../features/products/types";
 import type { User, UserSignIn, UserSignUp } from "../features/auth/types";
+import { searchParams } from "../features/functions/SovietUnion";
 
 
-export const fetchLoadProducts = async (): Promise<Product[]> => {
-    const res = await fetch('/api/products');
+export const fetchLoadProducts = async (filters: ProductFilters): Promise<Product[]> => {
+    const query = searchParams(filters);
+    const url = `/api/products?${query}`
+    const res = await fetch(url);
+    if (!res.ok) {
+        throw new Error(res.statusText);
+    }
     const data: { products: Product[] } = (await res.json()) as { products: Product[] };
     return data.products;
   };

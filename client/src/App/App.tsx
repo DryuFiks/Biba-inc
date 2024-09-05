@@ -17,7 +17,6 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(loadProducts()).catch(console.log);
     dispatch(loadUsers()).catch(console.log);
     dispatch(checkUser()).catch(console.log);
     setTimeout(() => dispatch(stopLoading()),1000);

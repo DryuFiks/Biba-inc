@@ -22,7 +22,7 @@ const RegistrationPage = (): JSX.Element => {
   
   const onSubmit: SubmitHandler<UserSignUp> = (data) => {
     dispatch(signUp(data))
-    .then(() => navigate('/'))
+    .then(() => navigate('/products'))
     .catch(console.log);
   };
 

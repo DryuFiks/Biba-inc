@@ -5,11 +5,12 @@ export type User = {
     email: string;
     password: string;
     rpassword: string;
-    isSaller: boolean;
+    banned: boolean;
+    roll: string;
 };  
 
-export type UserSignIn = Omit<User, 'id' |'name' | 'rpassword' | 'isSaller'>;
-export type UserSignUp = Omit<User, 'id' | 'rpassword' |'isSaller'> & { rpassword: string };
+export type UserSignIn = Omit<User, 'id' |'name' | 'rpassword' | 'banned'>;
+export type UserSignUp = Omit<User, 'id' | 'rpassword' |'banned'> & { rpassword: string };
 
 
 export type UserWithoutId = Omit<User, 'id'>;
