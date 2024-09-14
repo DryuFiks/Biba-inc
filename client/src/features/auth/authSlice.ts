@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCheckUser,  fetchLogOut, fetchSignIn, fetchSignUp } from "../App/api";
+import { fetchCheckUser,  fetchLogOut, fetchSignIn, fetchSignUp } from "../../App/api";
 import type { AuthState, UserSignIn, UserSignUp } from "./types";
 
 const initialState: AuthState = {
@@ -23,14 +23,16 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
     builder
-        .addCase(checkUser.fulfilled, (state, action) => {
-            state.auth = action.payload;
-        })
         .addCase(checkUser.pending, (state) => {
             state.loading = true;
         })
+        .addCase(checkUser.fulfilled, (state, action) => {
+            state.auth = action.payload;
+            state.loading = false;
+        })
         .addCase(checkUser.rejected, (state, action) => {
             state.error = action.error.message;
+            state.loading = false;
         })
         .addCase(signUp.fulfilled, (state, action) => {
             state.auth = action.payload;

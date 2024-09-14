@@ -8,7 +8,7 @@ router.post('/sign-in', async (req, res) => {
   let user;
   try {
     const { email, password } = req.body;
-
+    
     user = await User.findOne({ where: { email } });
     if (!user) {
       res.json({ message: 'Такого пользователя нет или пароль неверный' });
@@ -32,7 +32,10 @@ router.post('/sign-in', async (req, res) => {
       maxAge: 1000 * 60 * 60 * 12,
       httpOnly: true,
     });
-    res.json({ message: 'success', user });
+    const { password: userPassword, ...userWithoutPassword } = user.dataValues;
+    
+    res.locals.user = user;
+    res.json({ message: 'success', user:userWithoutPassword });
   } catch ({ message }) {
     res.json({ message });
   }
@@ -42,7 +45,6 @@ router.post('/sign-up', async (req, res) => {
   let user;
   try {
     const { name, email, password, rpassword } = req.body;
-
     if (password !== rpassword) {
       res.status(400).json({ message: 'Пароли не совпадают!' });
       return;
@@ -68,18 +70,19 @@ router.post('/sign-up', async (req, res) => {
       maxAge: 1000 * 60 * 60 * 12,
       httpOnly: true,
     });
-
-    res.status(200).json({ message: 'success', user });
+    const { password: userPassword, ...userWithoutPassword } = user.dataValues;
+    res.locals.user = user;
+    res.status(200).json({ message: 'success',  user: userWithoutPassword,  });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
 });
 
 router.get('/check', async (req, res) => {
-  console.log(res.locals.user);
   if (res.locals.user) {
     const user = await User.findOne({ where: { id: res.locals.user.id } });
-    res.json({ user });
+    const { password: userPassword, ...userWithoutPassword } = user.dataValues;
+    res.json(userWithoutPassword); 
     return;
   }
   res.json({});

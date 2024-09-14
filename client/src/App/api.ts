@@ -53,6 +53,7 @@ export const fetchLoadUsers = async (): Promise<User[]> => {
 };
 
   export const fetchSignIn = async (user: UserSignIn ): Promise<User> => {
+    
     const res = await fetch('/api/auth/sign-in', {
       method: 'post',
       headers: {
@@ -64,6 +65,7 @@ export const fetchLoadUsers = async (): Promise<User[]> => {
       message: string;
       user: User;
     };
+    
     return data.user;
   };
 

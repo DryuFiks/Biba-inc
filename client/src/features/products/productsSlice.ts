@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAddProduct, fetchProductRemove, fetchLoadProducts } from "../App/api";
+import { fetchAddProduct, fetchProductRemove, fetchLoadProducts } from "../../App/api";
 import { ProductFilters, SORT_BY, SORT_ORDER, type ProductId, type ProductWithOutId, type ProductsState } from "./types";
 
 const initialState: ProductsState = {
@@ -28,20 +28,20 @@ const  productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        stopLoading(state) {
-            state.loading = false;
-        }
+
     },
     extraReducers: (builder) => {
         builder
-        .addCase(loadProducts.fulfilled, (state, action) => {
-            state.products = action.payload;
-        })
         .addCase(loadProducts.pending, (state) => {
             state.loading = true;
         })
+        .addCase(loadProducts.fulfilled, (state, action) => {
+            state.products = action.payload;
+            state.loading = false;
+        })
         .addCase(loadProducts.rejected, (state, action) => {
             state.error = action.error.message;
+            state.loading = false;
         })
         .addCase(addProduct.fulfilled, (state, action) => {
             state.products.push(action.payload);
@@ -58,6 +58,6 @@ const  productsSlice = createSlice({
     },
 });
 
-export const { stopLoading } = productsSlice.actions
+export const {  } = productsSlice.actions
 
 export default productsSlice.reducer

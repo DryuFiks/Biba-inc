@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { LoadUsersState } from "./type";
-import { fetchLoadUsers } from "../App/api";
+import { fetchLoadUsers } from "../../App/api";
 
 const initialState: LoadUsersState = {
     users: [],
@@ -20,7 +20,7 @@ const usersSlice = createSlice({
             state.users = action.payload;
         })
         .addCase(loadUsers.rejected, (state, action) => {
-            state.error =action.error && action.error.message;
+            state.error = action.error && action.error.message;
         })
     },
 });

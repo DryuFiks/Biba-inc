@@ -39,7 +39,15 @@ const AuthorizationPage = (): JSX.Element => {
         type="email" />
         <input 
         placeholder='Password'
-        {...register}
+        {...register
+        ('password', {
+          required: 'This field is required',
+          minLength: {
+            value: 6,
+            message: 'min length is 6',
+          },
+        })
+        }
         type="password" />
         <button type="submit">Войти</button>
         {emailError &&  <p style={{ color: 'tomato', textTransform: 'uppercase' }}>{emailError}</p>}   

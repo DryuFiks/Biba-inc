@@ -44,7 +44,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { name, description, price, count, email } = req.body;
-    // const newFileUrl = `/email/${req.file.originalname}`;
     const product = await Product.create({
       name,
       description,

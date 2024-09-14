@@ -5,13 +5,13 @@ import { signUp } from './authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { User, UserSignUp } from './types';
+import {  UserSignUp } from './types';
 import { Button, TextField } from '@mui/material';
 
 const RegistrationPage = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, formState: { errors}, watch } = useForm<User>({
+  const { register, handleSubmit, formState: { errors}, watch } = useForm<UserSignUp>({
     mode: 'onChange',
   });
   const emailError = errors.email?.message;
