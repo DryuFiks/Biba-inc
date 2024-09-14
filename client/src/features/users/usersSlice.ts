@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { LoadUsersState } from "./type";
-import { fetchLoadUsers } from "../../App/api";
+import { fetchLoadUsers } from "../App/api";
 
 const initialState: LoadUsersState = {
     users: [],

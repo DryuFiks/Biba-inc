@@ -20,5 +20,6 @@ export type UserWithoutId = Omit<User, 'id'>;
 export type AuthState = {
     auth: undefined | User;
     error: string | undefined;
+    loading: boolean;
 }
 
